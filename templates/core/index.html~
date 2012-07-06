@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Note</title>
+    </head>
+    <body>
+        <form method="post" action="/note">
+            <textarea name="content"></textarea>
+            <input type="submit" value="提交">
+        </form>
+        <div class="notes">
+            {% for note in notes %}
+            <div id="note-{{ note.id }}">
+                <p class="content">{{ note.content }}</p>
+                <span class="time">{{ note.time }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
