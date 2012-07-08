@@ -12,7 +12,10 @@
 </div>
 <div id="Editor">
     <form method="post" action="/note/create">
-        <textarea name="content"></textarea>
+        <textarea name="content">{% if note %}{{ note.content}}{% endif %}</textarea>
     </form>
+</div>
+<div>
+    <a href="{{ url }}">{{ url }}</a>
 </div>
 {% endblock %}

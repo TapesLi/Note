@@ -14,9 +14,12 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^notes/$', 'core.views.index'),
-    url(r'^note/$', 'core.views.note_create'),
-    url(r'^note/(?P<note_id>\d+)', 'core.views.note_detail'),
-    url(r'^note/(?P<note_id>\d+)/update', 'core.views.note_update'),
-    url(r'^note/(?P<note_id>\d+)/delete', 'core.views.note_delete'),
+
+    url(r'^$', 'core.views.index'),
+    url(r'^note/$', 'core.views.index'),
+    url(r'^notes/$', 'core.views.notes_list'),
+    url(r'^note/create', 'core.views.note_create'),
+    url(r'^note/(?P<note_url>\w{8})', 'core.views.note_detail'),
+    url(r'^note/(?P<note_url>\w{8})/update', 'core.views.note_update'),
+    url(r'^note/(?P<note_url>\w{8})/delete', 'core.views.note_delete'),
 )

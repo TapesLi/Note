@@ -1,0 +1,15 @@
+<div class="notes">
+    {% for note in notes %}
+    <div id="Note-{{ note.id }}">
+        <p class="content">
+            {{ note.content }}
+        </p>
+        <p class="time">
+            {{ note.time }}
+        </p>
+        <p>
+            {{ note.url }}
+        </p>
+    </div>
+    {% endfor %}
+</div>
