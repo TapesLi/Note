@@ -1,15 +1,22 @@
-<div class="notes">
+{% extends "core/base.html" %}
+
+{% block main %}
+<ul id="Notes">
     {% for note in notes %}
-    <div id="Note-{{ note.id }}">
-        <p class="content">
-            {{ note.content }}
-        </p>
-        <p class="time">
-            {{ note.time }}
-        </p>
-        <p>
-            {{ note.url }}
-        </p>
-    </div>
+    <li id="Note-{{ note.id }}">
+        <div>
+            <p class="content">
+                {{ note.content }}
+            </p>
+        </div>
+        <div>
+            <a href="{% url core.views.note_detail note.url %}"> {{ note.time|date:"Y-m-d H:i:s" }} </a>
+            <a href="{% url core.views.note_detail note.url %}/delete" data-action="delete">删除</a>
+        </div>
+    </li>
     {% endfor %}
-</div>
+</ul>
+{%  endblock %}
+{% block javascript%}
+<script src="{{ STATIC_URL }}js/notes_list.js" type="text/javascript"></script>
+{% endblock %}

@@ -2,20 +2,25 @@
 
 {% block main %}
 <div id="Toolbar" class="clearfix">
-    <span>保存于 09:12:32</span>
+    <span>{% if note %}保存于 {{ note.time|date:"Y-m-d H:i:s" }}{% endif %}</span>
     <ul>
-        <li><a href="#" data-action="save">保存</a></li>
-        <li><a href="#" data-action="update">修改</a></li>
-        <li><a href="#" data-action="delete">删除</a></li>
+        <li><a href="{% url core.views.note_detail url %}/save" data-action="save">保存</a></li>
+        <li><a href="{% url core.views.note_detail url %}/delete" data-action="delete">删除</a></li>
+        <li><a href="/" data-action="new">新建</a></li>
         <li><a href="#" data-action="share">分享</a></li>
     </ul>
 </div>
 <div id="Editor">
-    <form method="post" action="/note/create">
+    <form method="post" action="/note/save">
+        <input type="hidden" name="url" value="{{ url }}" />
         <textarea name="content">{% if note %}{{ note.content}}{% endif %}</textarea>
     </form>
 </div>
 <div>
-    <a href="{{ url }}">{{ url }}</a>
+    <a href="{% url core.views.note_detail url%}">{{ url }}</a>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ STATIC_URL }}js/note_detail.js" type="text/javascript"></script>
 {% endblock %}
